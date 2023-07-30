@@ -1,0 +1,539 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* Common (các class dùng chung) */
+/* Đặt phông chữ */
+html{
+    scroll-behavior: smooth; /* khi ấn vào các mục trên header thì trang sẽ cuộn xuống mục tương ứng một cách mượt mà*/
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.text-white {
+    color:#fff !important /* đặt chữ thành màu trắng(dùng cho nhiều text khác nhau)(chỉ cần thêm class text-white vào class cần đặt chữ thành màu chỉ định) */
+}
+/* căn giữa */
+.text-center {
+    text-align: center !important; 
+}
+
+/* Hàng */
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.row::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.mt-8 {
+    margin-top: 8px !important;
+}
+
+.mt-16 {
+    margin-top: 16px !important;
+}
+
+.mt-32 {
+    margin-top: 32px !important;
+}
+
+.pull-right{
+    float: right !important;
+}
+
+/* Cột */
+.col {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.col-full {
+    width: 100%;
+}
+
+/* cột đôi */
+.col-half {
+    width: 50%;
+}
+/* cột ba */
+.col-third {
+    width: 33.33333%;
+}
+
+.btn{
+    color: #fff;
+    font-size: 15px;
+    background-color: #000;/* màu nút */
+    padding: 11px 16px;/* làm dày nút */
+    text-decoration: none;/* xóa gạch chân dưới chữ */
+    margin-top: 15px;/* tạo khoảng cách giữa nút và chữ ở trên */
+    border: none; /* bở viền nút */
+    display: inline-block;/* cho nút nhảy xuống dưới để ko bị đè vào chữ */
+    text-align: center;
+    appearance: none; /* loại bỏ giá trị mặc định của nút */
+    -webkit-appearance: none; /* loại bỏ giá trị mặc định của nút có tác dụng trên ios */
+}
+
+.btn:hover{   /* hiệu ứng khi di chuột vào nút */
+    background-color: #ccc;
+    color: #000;
+    cursor: pointer;
+}
+
+/* HEADER */
+#header{            /*  đặt cỡ và màu cho thanh header */ 
+    height: 46.5px;             
+    background-color: black;
+    position: fixed;/* set cho thanh header luôn dính bên trên cùng mỗi khi cuộn chuột xuống */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;/* cho thanh header nổi lên trên để sửa lỗi cuộn xuống thì ảnh sẽ che mất thanh header */
+}
+
+#nav{
+    display: inline-block;/* giới hạn nội dung của thanh header dài đến đâu thì chỉ đến đó thôi  */
+}
+
+#nav .subnav {
+    list-style-type: none;/* xóa các chấm đầu dòng kiểu list của mục con trong more */
+}
+#nav > li{
+    display: inline-block;       /*  làm các ô chọn trong thanh header thành hàng ngang */
+}
+#nav li {
+    position: relative;/* là bố của posi ở #nav .subnav */
+}
+
+#nav > li > a{
+    color: #fff;
+    text-transform: uppercase;/* đặt chữ trong thẻ header thành chữ hoa */
+}
+
+#nav li a {         /*  set phần chữ trong thanh header */
+    text-decoration: none;      /* xóa phần gạch chân dưới chữ */
+    padding: 0 24px;            /* set khoảng cách giữa các chữ */
+    line-height: 46.5px;        /* căn chữ ra giữa */
+    display: block;/* set cho hover tràn ra vừa với chiều cao của thanh header trong vùng chọn của chữ  */
+}
+
+#nav li:hover .subnav{
+    display: block; /* làm hiện mục con của more khi di chuột vào */
+}
+
+#nav > li:hover > a,
+#nav .subnav li:hover a {    /* set phần di chuột vào các phần tử con trong thanh header và con của mục More thì phần nền chữ sẽ biến thành màu trắng xám */
+    color: black;
+    background-color: #ccc;
+}
+
+#nav .subnav{
+    display: none;/* ẩn mục con của mục More */
+    min-width: 160px;/* set cho chiều rộng của mục con của more rộng ra thêm 160px */
+    position: absolute;/* cho các mục con của More hiển thị thẳng với chữ More  */
+    top: 100%;/* top và left để set cố định vị trí cho mục con của more   */
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);/* tạo bóng đổ xung quanh box của more */
+}
+
+#nav .subnav a{/* căn chỉnh các mục con của more */
+    color: black;
+    padding: 0 12px; 
+    line-height: 38px;
+}
+
+#nav .nav-arrow-down{/* set phông cho icon hình tam giác cạnh chữ more */
+    font-size: 14px;
+}
+
+#header .mobile-menu-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+#header .mobile-menu-btn,
+#header .search-btn{ 
+    float: right; /* cho nút search nhảy lên bên góc trên bên phải */
+    
+}
+
+
+#header .search-btn:hover{/* CSS cho nút search khi được di chuột vào */
+    cursor: pointer; /* khi di vào con trỏ chuột sẽ thành hình ngón tay ấn vào được */
+    background-color: #f44336;/* khi di con trỏ chuột vào thì nền nút search sẽ thành màu đỏ */
+}
+
+#header .mobile-menu-btn:hover{/* CSS cho nút search khi được di chuột vào */
+    background-color: #ccc;/* khi di con trỏ chuột vào thì nền nút search sẽ thành màu đỏ */
+}
+
+#header .mobile-menu-btn:hover .menu-icon{/* CSS cho nút search khi được di chuột vào */
+    color: #000;
+}
+
+#header .menu-icon,
+#header .search-icon{ /* set màu và căn chỉnh vị trí cho nút search */
+    color: #fff;
+    font-size: 20px;
+    line-height: 46px;
+    padding: 0 24px;
+}
+
+/* SLIDER */
+#slider{
+    position: relative;
+    margin-top: 46px;
+    padding-top: 50%;/* set cho phần slider luôn luôn bằng 50% chiều cao của chính nó để ảnh luôn giữ đúng tỉ lệ */
+    background: url('../img/slider/chicago.jpg') top center / cover no-repeat;/* chèn ảnh và căn chỉnh ảnh */
+
+}
+
+#slider .text-content{
+    position: absolute;
+    color: #fff;
+    bottom: 47px;/* cho chữ cách mép dưới của ảnh 47px */
+    width: 100%;/* căn tất cả chữ ra giữa ảnh */
+    /* left: 50%;
+    transform: translateX(-50%); */ /* cách khác */
+    text-align: center;/* căn chữ New York ra giữa  */
+} 
+
+#slider .text-heading{/* chữ New York */
+    font-weight: 500;/* set độ đậm của chữ */
+    font-size: 25px;/* set cỡ chữ */
+} 
+
+#slider .text-description{/* dòng mô tả ở dưới */
+    font-size: 15px;
+    margin-top: 25px;/* tạo khoảng cách giữa 2 dòng chữ bằng cách tăng margin phía trên của dòng mô tả lên 25px để đẩy chữ new york lên   */
+    text-shadow: 0 0 1px #000;
+} 
+
+/* CONTENT */
+#content{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content .content-section{
+    width: 800px;/* thu nhỏ đoạn text */
+    max-width: 100%;
+    padding: 64px 0px 112px;/* tạo khoảng cách với phần slider  */
+    margin-left: auto;/* căn đoạn text ra giữa */
+    margin-right: auto;/* căn đoạn text ra giữa */
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#content .section-heading{
+    text-align: center ;/* căn chữ the band ra giữa */
+    font-size: 30px;/* cỡ chữ */
+    font-weight: 500;/* độ đậm của chữ the band */
+    letter-spacing: 3px;/* tạo khoảng cách giữa các chữ của từ the band  */
+}
+
+#content .section-sub-heading{
+    font-size: 15px;
+    text-align: center ;/* căn chữ we love music ra giữa */
+    margin-top: 25px;/* tạo khoảng cách với chữ the band */
+    font-style: italic;/* làm chữ  nghiêng */
+    opacity: 0.6; /* làm mờ chữ */
+}
+
+#content .about-text{
+    margin-top: 25px;/* tạo khoảng cách với chữ we love music */
+    font-size: 15px;/* cỡ chữ */
+    text-align: justify;/* căn đều hai bên đoạn text */
+    line-height: 1.4;/* tạo khoảng cách giữa các dòng của đoạn text */
+}
+
+#content .member-list {
+    margin-top: 32px;/* tạo khoảng cách với đoạn text ở trên */
+    overflow: hidden;/* khắc phục lỗi khi sử dụng float (cách khác là sử dụng một class tên là clear) */
+}
+
+#content .member-name {
+    font-size: 15px;/* set cỡ chữ cho chữ name */
+}
+
+#content .member-img {
+    margin-top: 15px;/* tạo khoảng cách với chữ name */
+    width: 154px;/* set ảnh nhỏ lại */
+    border-radius: 4px;/* tạo bo góc cho ảnh */
+}
+
+/* TOUR section */
+.tour-section {
+    background-color: #000;/* set cho nền phần tour thành màu đen */
+}
+
+.tickets-list {
+    background-color: white;/* set màu nền của phần mua vé */
+    margin-top: 40px; /* tạo khoảng cách của bảng mua vé với dòng chữ ở trên */
+    list-style: none;/* xóa dấu chấm đầu dòng của list */
+}
+
+.tickets-list li{
+    color: #757575;/* set màu chữ của các tháng  */
+    font-size: 15px;/* cỡ chữ */
+    padding: 11px 16px;/* căn chữ ra giữa */
+    border-bottom: 1px solid #ddd;/* tạo dòng kẻ ngăn cách mỗi dòng */
+}
+
+.tickets-list .sold-out{
+    background-color: #f44336;/* set màu nền cho chữ sold out */
+    color: #fff;/* màu chữ sold out */
+    padding: 3px 4px;/* làm dày xung quanh viền nhãn sold out */
+    margin-left: 16px;/* tạo khoảng cách giữa chữ sold out và các chữ bên tay trái  */
+}
+/* số 3 */
+.tickets-list .quantity {
+    float: right;/* cho số 3 sang bên phải */
+    width: 24px;/* cho số 3 sang trái 24px */
+    height: 24px;
+    background-color: black;/* set màu nền  */
+    border-radius: 50%;/* tạo bo góc cho nền số 3 thành hình tròn */
+    text-align: center;/* căn số 3 ra giữa hình tròn */
+    line-height: 24px;/* căn dưới */
+    color: #fff;
+    margin-top: -3px;/* cho khối số 3 dịch lên 3px (chỉ dùng dc khi có float) */
+}
+
+/* Places */
+.places-list{
+    margin-top: 16px;
+    overflow: hidden;/* khắc phục lỗi của float */
+    padding-bottom: 48px;/* làm dày đáy màu đen của phần tour  */
+}
+
+.place-img{
+    width: 100%;/* cho 3 ảnh tỉ lệ 3 ảnh bằng đều nhau*/
+    display: block;/* xóa khoảng cách mặc định của ảnh ngăn cách ảnh và phần chữ bên dưới  */
+}
+
+.place-img:hover{
+    opacity: 0.6;/* làm mờ ảnh khi di chuột vào */
+}
+
+.place-body{
+    background-color: #fff;/* set màu nền phần chứa chữ và nút ở dưới ảnh */
+    padding: 16px;/* căn tất cả nội dung vào giữa  */
+    font-size: 15px;
+
+}
+
+.place-heading{
+    font-size: 15px;/* cỡ chữ */
+    font-weight: 600;/* độ dày chữ */
+}
+
+.place-time{
+    color: #757575;/* màu chữ */
+    margin-top: 15px;/* tạo khoảng cách với dòng trên */
+}
+
+.place-desc{
+    margin-top: 15px;/* tạo khoảng cách với dòng trên */
+    line-height: 1.4;/* giãn chữ  */
+}
+
+
+/* Modal: mở ra một cửa sổ mới khi ấn vào nút buy tickets */
+.modal {
+    z-index: 3;/* đặt thứ tự của modal là lớn hơn để lớp phủ có thể phủ lên cả thanh header, khi đó thanh hearder có thứ tự bé hơn sẽ bị chìm xuống dưới */
+    position: fixed;/* tạo ra một lớp phủ lên toàn bộ trang web */
+    right: 0;/* kích thước lớp phủ 4 hướng bằng 0 thì sẽ tràn ra toàn trang */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);/* tạo màu mờ cho lớp phủ */
+    display: none;
+    align-items: center;/* cho phần nội dung của modal bằng nửa chiều dọc của màn hình */
+    justify-content: center;/* cho phần nội dung của modal bằng nửa chiều ngang của màn hình */
+}
+
+.modal.open {
+    display: flex;
+}
+
+/* Phần chứa nội dung modal */
+.modal-container {
+    background: #fff;/* màu nền phần modal */
+    width: 900px;/* chiều rộng của phần modal */
+    min-height: 200px;/* chiều cao tối thiểu của modal */
+    position: relative;/* .modal-close */
+    max-width: calc(100% - 32px);/* responsive cho modal (chiều ngang tối đa của modal mỗi bên là 16px) */
+    animation: modalFadeIn ease 0.3s; /* tạo chuyển động animation: "tên keyframe" "kiểu chuyển động" "thời gian chạy" */
+}
+
+/* Modal hearder */
+.modal-header {
+    background: #009688;/* màu của phần header modal */
+    height: 130px;/* chiều cao */
+    display: flex;/* căn giữa */
+    align-items: center;/* căn giữa */
+    justify-content: center;/* căn giữa */
+    font-size: 30px;/* cỡ chữ */
+    color: #fff;/* màu chữ */
+}
+
+.modal-heading-icon{
+    margin-right: 16px;/* tạo khoảng cách giữa icon túi sách với chữ Tickets */
+}
+
+.modal-close:hover {
+    opacity: 1;/* thay đổi độ mờ của dấu x để tạo cảm giác ấn */
+}
+.modal-close {
+    position: absolute;/* cho dấu x đè xuống phần nền xanh (cha là relative ở .modal-container ) */
+    right: 0; /* chuyển dấu x sang phải */
+    top: 0;
+    color: #fff;
+    padding: 13px; /* căn dấu x ra giữa */
+    cursor: pointer;/* thay đổi con trỏ chuột thành hình bàn tay khi di vào */
+    opacity: 0.7;/* độ mờ */
+}
+
+/* Modal body */
+.modal-body {
+    padding: 16px;/* căn lề hai bên của nội dung bên trong modal */
+}
+
+.modal-label {
+    display: block; /* cho các phần tử trong phần body modal thành mỗi thứ một dòng */
+    font-size: 15px;
+    margin-bottom: 12px; /* cho label với ô input cách đúng vị trí để nhìn trực quan hơn */
+}
+
+.modal-input {
+    border: 1px solid #ccc;/* định dạng cho viền ô input  */
+    width: 100%; /* dộ dài ô input */
+    padding: 10px; /* cho ô in input rộng ra */
+    font-size: 15px;/* cỡ chữ "how many?" và "Enter email" */
+    margin-bottom: 24px;/* cho label với ô input cách đúng vị trí để nhìn trực quan hơn */
+}
+
+/* Nút Pay */
+#buy-tickets:hover {
+    opacity: 0.9; /* làm mờ nút pay khi duy chuột vào */
+    cursor: pointer;
+}
+
+#buy-tickets {
+    background: #009688;
+    border: none; /* bỏ viền mặc định của nút */
+    color: #fff;
+    width: 100%; /* làm nút pay dài ra */
+    font-size: 15px;
+    padding: 16px; /* tăng chiều cao nút pay */
+}
+
+/* Modal footer */
+.modal-footer{
+    padding: 16px; /* căn đều lề với các dòng trên  */
+    text-align: right; /* chuyển need help sang bên lề phải */
+    font-size: 15px;
+}
+
+.modal-footer a{
+    color: #2196F3; /* màu chữ help */
+}
+/* Tạo chuyển động của cửa sổ modal */
+@keyframes modalFadeIn{
+    /* bắt đầu */
+    from {
+        opacity: 0; /* độ mờ */
+        transform: translateY(-140px); /* bắt đầu trượt từ trên -140px */
+    }
+    /* đến */
+    to {
+        opacity: 1; /* độ mờ */
+        transform: translateY(0); /* đến 0 thì dừng lại (đây là vị trí ban đầu) */
+    }
+}
+
+/* Contact form */
+.contact-content {
+    margin-top: 48px;
+}
+
+.contact-info{
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.contact-info i[class*="ti-"] {
+    width: 30px;
+    display: inline-block;
+}
+
+.contact-info a {
+    color: #0000f1;
+    opacity: 0.8;
+}
+
+.contact-info a:hover{
+    opacity: 1;
+}
+
+.contact-form{
+    font-size: 15px;
+}
+
+.contact-form  .form-control{
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.contact-form .form-submit {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px 16px;
+    float: right;
+}
+
+/* Map */
+.map-section img{
+    width: 100%;
+}
+
+
+/* Footer */
+#footer{
+    padding: 64px 16px;
+    text-align: center;
+}
+
+#footer .socical-list{
+    font-size: 24px;
+}
+
+#footer .socical-list a {
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+#footer .copyright a:hover,
+#footer .socical-list a:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.copyright{
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.6);
+}
+#footer .copyright a{
+    color: rgba(0, 0, 0, 0.6);
+}
